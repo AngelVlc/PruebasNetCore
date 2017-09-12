@@ -12,7 +12,7 @@ namespace WebAppNetCore
     {
         public static void Main(string[] args)
         {
-            // http://kerryritter.com/deploying-asp-net-core-to-heroku/
+            // https://blog.jenyay.com/running-asp-net-core-in-heroku/
 
             var url = $"http://*:{Environment.GetEnvironmentVariable("PORT")}/";
 
