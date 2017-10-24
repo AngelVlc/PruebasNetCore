@@ -3,17 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace WebAppNetCore.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly MyOptions _options;
+
+        public ValuesController(IOptions<MyOptions> optionsAccessor)
+        {
+            _options = optionsAccessor.Value;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+        public object Get()
+        {            
+            try
+            {
+
+                using (var context = SampleContextFactory.Create(_options.ConStr))
+                {
+                    var result = context.locations.ToList();
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
         }
 
         // GET api/values/5

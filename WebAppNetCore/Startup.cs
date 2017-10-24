@@ -27,6 +27,20 @@ namespace WebAppNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adds services required for using options.
+            services.AddOptions();
+
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration
+
+            // Register the ConfigurationBuilder instance which MyOptions binds against.
+            services.Configure<MyOptions>(Configuration);
+
+            // Registers the following lambda used to configure options.
+            services.Configure<MyOptions>(myOptions =>
+            {
+                myOptions.ConStr = ConfigurationExtensions.GetConnectionString(this.Configuration, "SampleConnection");
+            });
+
             // Add framework services.
             services.AddMvc();
         }
