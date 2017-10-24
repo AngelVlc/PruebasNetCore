@@ -27,7 +27,7 @@ namespace WebAppNetCore.Controllers
 
                 using (var context = SampleContextFactory.Create(_options.ConStr))
                 {
-                    var result = context.Cursos.ToList();
+                    var result = context.locations.ToList();
 
                     return result;
                 }

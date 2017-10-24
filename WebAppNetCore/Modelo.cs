@@ -28,7 +28,7 @@ namespace WebAppNetCore
         : base(options)
         { }
 
-        public DbSet<Cursos> Cursos { get; set; }
+        public DbSet<locations> locations { get; set; }
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ namespace WebAppNetCore
     /// <summary>
     /// A basic class for an Employee
     /// </summary>
-    public class Cursos
+    public class locations
     {
-        public Cursos()
+        public locations()
         {
         }
 
